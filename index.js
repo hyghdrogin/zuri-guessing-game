@@ -1,4 +1,5 @@
 let userName = prompt("Welcome to my Guessing Game, what can I call you?");
+let life;
 
 const guessCheck = (range) => {
   let guess = parseInt(
@@ -16,8 +17,12 @@ We'll tell you if your guess was too high or too low.`)
     pointCount++;
     console.log(`Your point count is: ${pointCount}`);
     console.log(`Welcome to Level ${level}`);
+    range++;
   } else if (guess > randomNumber) {
     console.log("Your guess is too high");
+    life = 2;
+    life--;
+    console.log(`You have ${life} life left`);
     console.log(`You remain in Level ${level}`);
     if (guess !== randomNumber) {
       let guess = parseInt(prompt("Try Again"));
@@ -34,6 +39,9 @@ We'll tell you if your guess was too high or too low.`)
     };
   } else if (guess < randomNumber) {
     console.log("Your guess is too low");
+    life = 2;
+    life--;
+    console.log(`You have ${life} life left`);
     console.log(`You remain in Level ${level}`);
     if (guess !== randomNumber) {
       let guess = parseInt(prompt("Try Again"));
@@ -52,5 +60,16 @@ We'll tell you if your guess was too high or too low.`)
     console.log("Invalid Guess");
     console.log(`You remain in Level ${level}`);
   };
+  if (range++) {
+    range -= 1;
+    console.log("----------------------------------------")
+    guessCheck(range);
+  } else {
+    console.log("Restart Level")
+  }
 };
 guessCheck(2);
+
+// for (let range = 2; range > 1; range++) {
+//   guessCheck(range);
+// }
